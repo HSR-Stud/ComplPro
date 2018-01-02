@@ -1,0 +1,10 @@
+*.aux
+*.log
+TSM_EmbHardw.pdf
+*.out
+*.synctex*
+*.sublime-workspace
+*.DS_STORE
+*.DS_Store
+out/
+tmp/
