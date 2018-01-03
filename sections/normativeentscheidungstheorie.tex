@@ -169,3 +169,148 @@ $\text{normierter Wert} = \frac{\text{zu normierender Wert} - \text{minimaler We
 		\item $a_2$ : 0.25 * 0 + 0.75 * 0 = 0.75
 	\end{compactitem}
 \end{example}
+
+\subsection{Entscheidung unter Ungewissheit}
+Situation mit mehreren Umweltzuständen, für die die Eintrittswahrscheinlichkeiten nicht bekannt sind.
+
+\subsubsection{Maximin-Regel}
+\textbf{Regel:} Man wähle die Handlungsalternative mit dem maximale Minimum. \\
+\textbf{Intention:} Extrem risikoscheue Entscheidungsregel, da nur das schlechteste mögliche Ergebnis in die Beurteilung einfliesst.\\
+\textbf{Kritik:} Realitätsfremd und es wird nur ein einziger Wert einer Alternative berücksichtigt.
+\begin{example} \\
+	\begin{tabular}{|l|l|l|l|l|l|}
+		\hline
+		& $z_1$ & $z_2$ & $z_3$ & $z_4$ & Minimum \\ \hline
+		$a_1$ & 60 & 30 & 50 & 60 & \textbf{30} \\ \hline
+		$a_2$ & 10 & 10 & 10 & 140 & 10 \\ \hline
+		$a_3$ & -30 & 100 & 120 & 130 & -30 \\ \hline		
+	\end{tabular}
+\end{example}
+
+\subsubsection{Maximax-Regel}
+\textbf{Regel:} Man wähle die Handlungsalternative mit dem maximale Maximum. \\
+\textbf{Intention:} Extrem risikofreudige (optimistische) Entscheidungsregel, da nur das bestmögliche Ergebnis in die Beurteilung einfliesst.\\
+\textbf{Kritik:} Extrem realitätsfremd und es wird ebenfalls nur ein einziger Wert einer Alternative berücksichtigt.
+\begin{example} \\
+	\begin{tabular}{|l|l|l|l|l|l|}
+		\hline
+		& $z_1$ & $z_2$ & $z_3$ & $z_4$ & Maximum \\ \hline
+		$a_1$ & 60 & 30 & 50 & 60 & 60 \\ \hline
+		$a_2$ & 10 & 10 & 10 & 140 & \textbf{140} \\ \hline
+		$a_3$ & -30 & 100 & 120 & 130 & 130 \\ \hline		
+	\end{tabular}
+\end{example}
+
+\subsubsection{Hurwicz-Regel}
+\textbf{Regel:} Kombination aus der Maximin- und der Maximax-Regel durch Einführung eines Optimismusparameters $\lambda$. \\
+$\Phi(a_i) = \lambda * \max_j(e_{ij}) + (1 - \lambda) * \min_j(e_{ij})$ mit $0 \leq \lambda \leq 1$ \\
+\textbf{Intention:} Entscheidungsregel für Entscheider, die weder absolut optimistisch noch absolut pessimistisch sind.\\
+\textbf{Kritik:} In vielen Fällen realitätsfremd und es werden nur zwei Werte jeder Alternative berücksichtigt.
+\begin{example} 
+	$\lambda$ = 0.4 \\
+	\begin{tabular}{|l|l|l|l|l|l|}
+		\hline
+		& $z_1$ & $z_2$ & $z_3$ & $z_4$ & $\Phi(a_i)$ \\ \hline
+		$a_1$ & 60 & 30 & 50 & 60 & 0.4 * 60 + 0.6 * 30 = 42 \\ \hline
+		$a_2$ & 10 & 10 & 10 & 140 & 0.4 * 140 + 0.6 * 10 = \textbf{62} \\ \hline
+		$a_3$ & -30 & 100 & 120 & 130 & 0.4 * 130 + 0.6 * (-30) = 34 \\ \hline		
+	\end{tabular}
+\end{example}
+
+\subsubsection{Savage-Niehans-Regel}
+\textbf{Regel:} \aszeichen{Regel des kleinsten Bedauerns} \\
+\textbf{Intention:} Die Regel versucht das maximal mögliche Bedauern zu minimieren.\\
+\textbf{Vorgehen:} Aufstellen einer Matrix des Bedauerns, indem die Maxima der Umweltzustände ermittelt und dann pro Handlungsoption die maximal mögliche Differenz zu diesem Wert berechnet wird. Das maximal mögliche Bedauern, ist dann das Zeilenmaximum. \\
+\textbf{Kritik:} Bezüglich der Bedauernsmatrix beruht die Entscheidung auf den Prinzipien des Minimax-Kriteriums. Daher werden auch bei diesem Kriterium nicht alle Informationen verwendet, und es drückt letztlich eine pessimistische Haltung aus. 
+\begin{example} \\
+	\begin{tabular}{|l|l|l|l|l||l|l|l|l|l|}
+		\hline
+		& $z_1$ & $z_2$ & $z_3$ & $z_4$ & $z_1$ & $z_2$ & $z_3$ & $z_4$ & Maximum\\ \hline
+		$a_1$ & \textbf{60} & 30 & 50 & 60 & 60 - 60 = 0 & 100 - 30 = 70 & 120 - 50 = 70 & 140 - 60 = 80 & \textbf{80} \\ \hline
+		$a_2$ & 10 & 10 & 10 & \textbf{140} & 60 - 10 = 50 & 100 - 10 = 90 & 120 - 10 = 110 & 140 - 140 = 0 & 110 \\ \hline
+		$a_3$ & -30 & \textbf{100} & \textbf{120} & 130 & 60 - -30 = 90 & 100 - 100 = 0 & 120 - 120 = 0 & 140 - 130 = 10 & 90 \\ \hline		
+	\end{tabular}
+\end{example}
+
+\subsubsection{Laplace-Kriterium}
+\textbf{Regel:} Beim Laplace-Kriterium wird für jede Alternative der Durchschnitt aller Umweltzustände gebildet. \\
+\textbf{Intention:} \aszeichen{Prinzip des mangelnden Grundes} d.h. da es keinen Grund gibt, dass ein Umweltzustand wahrscheinlicher ist als ein anderer wird davon ausgegangen, dass alle Zustände gleich wahrscheinlich sind.\\
+\textbf{Kritik:} Es lässt sich festhalten, dass wahrscheinlich die meisten Alternative $a_3$ gewählt hätten und somit das Laplace-Kriterium verglichen mit den anderen Regeln realitätsnäher ist. Die Entscheidung wird beeinflusst durch das Hinzufügen praktisch identischer Spalten, d.h. für tatsächlich gleichwahrscheinliche Umweltzustände. Das Kriterium ist nur für risikoneutrale Entscheidungsträger rational, da Ausreisser gleichgewichtet werden.
+\begin{example} \\
+	\begin{tabular}{|l|l|l|l|l|l|}
+		\hline
+		& $z_1$ & $z_2$ & $z_3$ & $z_4$ & $\Phi(a_i)$ \\ \hline
+		$a_1$ & 60 & 30 & 50 & 60 & (60 + 30 + 50 + 60) / 4 = 50 \\ \hline
+		$a_2$ & 10 & 10 & 10 & 140 & (10 + 10 + 10 + 140) / 4 = 42.5 \\ \hline
+		$a_3$ & -30 & 100 & 120 & 130 & (-30 + 100 + 120 + 130) / 4 = \textbf{80} \\ \hline		
+	\end{tabular}
+\end{example}
+
+\subsection{Entscheidung unter Risiko}
+\subsubsection{$\mu$-Kriterium/Bayes-Regel}
+\textbf{Erwartungswert:} Der Erwartungswert ist der Wert, der sich als Mittelwert ergibt, wenn man die Situation unendlich oft wiederholen würde. Der Erwartungswert einer Alternative berechnet man, indem die Ergebniswerte mit den der dazugehörigen Wahrscheinlichkeit multipliziert und die sich so ergebenden Werte addiert werden. \\
+\textbf{risikoscheu:} Der Entscheidungsträger bevorzugt einen niedrigeren Erwartungswert, wenn dieser mehr Sicherheit bringt.\\
+\textbf{risikoneutral:} Dem Entscheidungsträger ist die Schwankung der Ergebnisse egal, er orientiert sich nur nach dem Erwartungswert.\\
+\textbf{risikofreudig:} Der Entscheidungsträger verzichtet auf einen höheren Erwartungswert zugunsten einer grösseren Streuung der Ergebnisse.\\
+\textbf{Fazit:} Für risikoneutrale Entscheidungsträger ist eine Entscheidung nach dem $\mu$-Kriterium rational. Darüber hinaus liefert das $\mu$-Kriterium bei oft wiederholten Entscheidungen bzw. Entscheidungen, deren Tragweite in Relation zum eigenen Vermögen nur klein ist, brauchbare Ergebnisse.
+\begin{example} \\
+	\begin{tabular}{|l|l|l|l|l|}
+		\hline
+		& $z_1$ & $z_2$ & $z_3$ & $\mu$ (Erwartungswert) \\ \hline
+		& $p_1$ = 0.5 & $p_2$ = 0.2 & $p_3$ = 0.3 & \\ \hline
+		$a_1$ & 30 & 20 & 20 & 0.5 * 30 + 0.2 * 20  + 0.3 * 20 = 25 \\ \hline
+		$a_2$ & 140 & -40 & -30 & 0.5 * 140 + 0.2 * (-40) + 0.3 * (-30) = \textbf{53} \\ \hline
+		$a_3$ & 40 & 10 & 60 & 0.5 * 40 + 0.2 * 10 + 0.3 * 60 = 40 \\ \hline		
+	\end{tabular}
+\end{example}
+
+\subsubsection{Entscheidungsbaum}
+Entscheidungsbäume sind geordnete, gerichtete Bäume, die der Darstellung von Entscheidungsregeln dienen. Die grafische Darstellung
+als Baumdiagramm veranschaulicht hierarchisch aufeinanderfolgende Entscheidungen. \\
+Ein Entscheidungsbaum besteht immer aus ...
+\begin{compactitem}
+	\item ... einem Wurzelknoten
+	\item ... beliebig vielen inneren Knoten (logische Regel)
+	\item ... mindestens zwei Blättern (Antwort auf Entscheidungsproblem)
+\end{compactitem}
+\textbf{Darstellung:}
+\begin{compactenum}
+	\item Die Zeit in einer Entscheidungsbaum-Darstellung läuft von	links nach rechts.
+	\item Ereignisknoten werden als Kreise dargestellt,	Entscheidungsknoten als Quadrate.
+	\item Die Kanten aus einem Entscheidungsknoten werden mit den	möglichen Entscheidungen angeschrieben. Alle möglichen Entscheidungen müssen vorkommen.
+	\item  Die Kanten aus einem Ereignisknoten werden mit den möglichen	Ereignissen angeschrieben. Alle möglichen Ereignisse müssen
+	vorkommen.
+\end{compactenum}
+\textbf{Entscheiden:}
+\begin{compactenum}
+	\item Entscheidungsbaum quantifizieren:
+	\begin{compactitem}
+		\item Bei jedem Ereignisknoten: Wahrscheinlichkeiten definieren
+		\item An jedem freien Kantenende: CHF anschreiben
+		\item Ein Ereignisknoten erhält als \aszeichen{expected monetary value} (EMV) das wahrscheinlichkeits-gewichtete Mittel der EMVs der unmittelbar rechts liegenden Knoten.
+		\item Ein Entscheidungsknoten erbt den grössten EMV der unmittelbar rechts liegenden Knoten.
+	\end{compactitem}
+	\item Im Entscheidungsknoten wird jene Kante gewählt, die den höchsten Erwartungswert aufweist.
+\end{compactenum}
+\begin{example}
+	Soll ein Angebot von CHF 10'000 angenommen werden, wenn bei seiner Ablehnung ein nächstes (letztes) Angebot auftauchen wird, das
+	\begin{compactitem}
+	\item mit 60\% Wahrscheinlichkeit CHF 15'000
+	\item mit 30\% Wahrscheinlichkeit CHF 8'000
+	\item und mit 10\% nichts wert ist?
+	\end{compactitem}
+	\begin{tikzpicture}[node distance = 0.6cm and 2.5cm]
+		\node (resultA) [answer] {A: CHF 10'000};
+		\node (resultB) [answer, below=of resultA] {B: CHF 15'000};
+		\node (resultC) [answer, below=of resultB] {C: CHF 8'000};
+		\node (resultD) [answer, below=of resultC] {D: CHF 0};
+		\node (waitForB) [event, left=of resultC, label=north:{CHF 11'400}] {Alternative B};
+		\node (J) [decision, left=of waitForB] {J};
+		\draw (waitForB) -- node[anchor=south]{0.6} (resultB.west);
+		\draw (waitForB) -- node[anchor=south]{0.3} (resultC);
+		\draw (waitForB) -- node[anchor=south]{0.1} (resultD.west);
+		\draw (J) -- node[anchor=south]{warten auf B} (waitForB);
+		\draw (J) |- node[anchor=north west]{A annehmen} (resultA);
+	\end{tikzpicture}\\
+	Warten auf B hat mit CHF 11'400 einen höheren Erwartungswert (EMV) als A.
+\end{example}
