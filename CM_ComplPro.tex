@@ -11,6 +11,7 @@
 \usepackage{textcomp}
 \usepackage{float}
 \usepackage{paralist}
+\usepackage{framed}
 
 \include{header/zusammenfassung}
 
@@ -20,6 +21,7 @@
 
 % Setze etwas in Anführungs und Schlusszeichen
 \newcommand{\aszeichen}[1]{,,#1``}
+\newenvironment{example}[1][Beispiel]{\begingroup\setlength{\OuterFrameSep}{0pt}\colorlet{shadecolor}{gray!15}\begin{snugshade*}\textbf{#1: }}{\end{snugshade*}\endgroup}
 
 % Spacing von multicols
 \setlength\multicolsep{2pt}
@@ -33,4 +35,5 @@
 
 \input{sections/einfuehrung.tex}
 \input{sections/deskriptiveentscheidungstheorie.tex}
+\input{sections/normativeentscheidungstheorie.tex}
 \end{document}

@@ -1,0 +1,100 @@
+\section{Normative Entscheidungstheorie}
+\begin{example}[Beispiel für dieses Kapitel]
+	Angenommen ein Mineralölkonzern strebe nach Gewinnmaximierung und überprüfe die Eröffnung einer neuen Tankstelle. In Frage kommen zwei Standorte:
+	\begin{multicols}{2}
+		\begin{compactenum}
+			\item Standort im Stadtzentrum (a1): 
+			\begin{compactitem}
+				\item Erwarteter Gewinn 125'000.- CHF 
+				\item Erwarteter Umsatz 2'000'000.- CHF
+			\end{compactitem}
+			\item Standort am Stadtrand (a2): 
+			\begin{compactitem}
+				\item Erwarteter Gewinn 150'000.- CHF 
+				\item Erwarteter Umsatz 1'800'000.- CHF
+			\end{compactitem}
+		\end{compactenum}
+	\end{multicols}
+\end{example}
+
+\subsection{Entscheidung unter Unsicherheit}
+\textbf{Hauptsächliche Beschäftigungsgebiet:} Unsicherheit und nicht der Zielkonflikt \\
+\textbf{Umweltzustände:} Faktoren auf welche man selber aber keinen Einfluss hat, die aber die Entscheidung beeinflussen\\
+Bei Entscheidungssituationen in denen eine bestimmte Entscheidung nicht mit einem einzigen möglichen Ereignis verbunden ist, wird von einer Entscheidung unter Unsicherheit gesprochen.
+
+\subsection{Ergebnismatrix}
+Darstellungsform für Entscheidungen unter Unsicherheit wobei die Handlungsalternativen ($a_i$) in den Zeilen und die verschiedenen Umweltzustände ($z_i$) in den Spalten dargestellt werden. 
+\begin{example}
+	Dem Mineralölkonzern ist bekannt, dass eine weiträumige Umgehungsstrasse geplant ist, die aber höchst umstritten ist.
+	\begin{compactitem}
+		\item Diese würden den Verkehr im Stadtzentrum nicht tangieren und auf CHF 125'000.- belassen.
+		\item Am Stadtrand würde sich aber eine drastische Veränderung ergeben,	die den erwarteten Gewinn auf CHF 80'000.- reduzieren liesse.
+	\end{compactitem}
+	Welcher Standort wäre unter der Prämisse der Gewinnmaximierung nun zu präferieren? \\
+	\begin{tabular}{|l|l|l|}
+		\hline
+		& $z_1$ (keine Umgehungsstrasse) & $z_2$ (Umgehungsstrasse) \\ \hline
+		$a_1$ (Stadtzentrum) & 125'000.- = $e_{11}$ & 125'000.- = $e_{11}$ \\ \hline
+		$a_2$ (Stadtrand) & 150'000.- = $e_{21}$ & 80'000.- = $e_{22}$ \\ \hline
+	\end{tabular}
+\end{example}
+
+\subsubsection{Zustandsraum}
+\begin{compactitem}
+	\item Raum aller möglicher Entscheidungsergebnisse.
+	\item Die Entscheidungsmatrix beschreibt die Entscheidungssituation nur dann hinreichend, wenn der Zustandsraum voll-ständig erfasst wird.
+	\item In der Realität oft nicht gegeben.
+\end{compactitem}
+
+\subsection{Klassifikation}
+\textbf{Entscheidung unter Risiko:} Falls den Umweltzuständen Eintrittswahrscheinlichkeiten zugeordnet werden können. \\
+\textbf{Entscheidung unter Ungewissheit:} Falls den Umweltzuständen keine Wahrscheinlichkeiten zugeordnet werden können. \\
+Wahrscheinlichkeiten müssen nicht mathematisch fundiert sein (objektiv), sondern können sich auch aus Sicht des Entscheiders ergeben (subjektiv).
+\begin{example}
+	Angenommen der Ölkonzern schätzt die Wahrscheinlichkeit für den Bau	der Umgehungsstrasse auf 30\%. \\
+	\begin{tabular}{|l|l|l|}
+		\hline
+		& $z_1$ (keine Umgehungsstrasse) & $z_2$ (Umgehungsstrasse) \\ 
+		& $p_1$ = 0.7 & $p_2$ = 0.3 \\ \hline
+		$a_1$ (Stadtzentrum) & 125'000.- = $e_{11}$ & 125'000.- = $e_{11}$ \\ \hline
+		$a_2$ (Stadtrand) & 150'000.- = $e_{21}$ & 80'000.- = $e_{22}$ \\ \hline
+	\end{tabular}
+\end{example}
+\textbf{Entscheidung wegen rationalem Gegenspieler:} Umweltzustände werden durch einen rationalen Gegenspieler bestimmt (und nicht durch Zufall)., gehört zur Spieltheorie.
+\begin{example}
+	Angenommen zwei verschiedene Ölkonzerne würden jeweils überlegen, ob sie am Stadtrand oder im Stadtzentrum eine neue Tankstelle errichten. \\
+	Ungünstig wäre sicherlich am gleichen Standort wie der Konkurrent zu bauen. Entsprechend wäre es wünschenswert zu wissen wo der
+	Konkurrent baut. Am besten wäre glaubhaft machen zu können, dass man am lukrativsten Standort plant zu bauen. Dann würde der Konkurrent auf den weniger lukrativen ausweichen.
+\end{example}
+
+\subsection{Dominanz}
+\begin{compactitem}
+	\item Alternative ist dominant, wenn sie einer anderen Alternative auf jeden Fall vorzuziehen ist.
+	\item Dominiert eine Alternative alle anderen, so ist diese zu präferieren.
+	\item Häufig kann so eine Vorauswahl getroffen werden, indem alle dominierten Alternativen entfernt werden.
+\end{compactitem}
+
+\subsubsection{Absolute Dominanz}
+Der schlechteste Ergebniswert der dominierenden Alternative ist besser als der beste Ergebniswert der
+dominierten Alternative.
+\begin{example} \\
+	\begin{tabular}{|l|l|l|}
+		\hline
+		& $z_1$ (keine Umgehungsstrasse) & $z_2$ (Umgehungsstrasse) \\ \hline
+		$a_1$ (Stadtzentrum) & 125'000.- & 90'000.- \\ \hline
+		$a_2$ (Stadtrand) & 100'000.- & 80'000.- \\ \hline
+	\end{tabular}\\ \ \\
+	Keine absolute Dominanz, da der schlechteste Wert der Alternative $a_1$ schlechter als der beste der Alternative $a_2$ ist.
+\end{example}
+
+\subsubsection{Zustandsdominanz}
+Eine Alternative ist in jedem Zustand (Umweltzustand) besser als (bzw. gleich gut wie) die andere Alternative.
+\begin{example} \\
+	\begin{tabular}{|l|l|l|}
+		\hline
+		& $z_1$ (keine Umgehungsstrasse) & $z_2$ (Umgehungsstrasse) \\ \hline
+		$a_1$ (Stadtzentrum) & 125'000.- & 90'000.- \\ \hline
+		$a_2$ (Stadtrand) & 100'000.- & 80'000.- \\ \hline
+	\end{tabular}\\ \ \\
+	In diesem Fall ist unabhängig vom Umweltzustand die Alternative $a_1$ immer besser. $a_1$ dominiert $a_2$.
+\end{example}
