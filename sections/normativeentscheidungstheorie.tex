@@ -1,5 +1,5 @@
 \section{Normative Entscheidungstheorie}
-\begin{example}[Beispiel für dieses Kapitel]
+\begin{example}[Beispiel für Kapitel 3.1 - 3.4]
 	Angenommen ein Mineralölkonzern strebe nach Gewinnmaximierung und überprüfe die Eröffnung einer neuen Tankstelle. In Frage kommen zwei Standorte:
 	\begin{multicols}{2}
 		\begin{compactenum}
@@ -54,7 +54,7 @@ Wahrscheinlichkeiten müssen nicht mathematisch fundiert sein (objektiv), sonder
 	Angenommen der Ölkonzern schätzt die Wahrscheinlichkeit für den Bau	der Umgehungsstrasse auf 30\%. \\
 	\begin{tabular}{|l|l|l|}
 		\hline
-		& $z_1$ (keine Umgehungsstrasse) & $z_2$ (Umgehungsstrasse) \\ 
+		Alternative & $z_1$ (keine Umgehungsstrasse) & $z_2$ (Umgehungsstrasse) \\ 
 		& $p_1$ = 0.7 & $p_2$ = 0.3 \\ \hline
 		$a_1$ (Stadtzentrum) & 125'000.- = $e_{11}$ & 125'000.- = $e_{11}$ \\ \hline
 		$a_2$ (Stadtrand) & 150'000.- = $e_{21}$ & 80'000.- = $e_{22}$ \\ \hline
@@ -80,7 +80,7 @@ dominierten Alternative.
 \begin{example} \\
 	\begin{tabular}{|l|l|l|}
 		\hline
-		& $z_1$ (keine Umgehungsstrasse) & $z_2$ (Umgehungsstrasse) \\ \hline
+		Alternative & $z_1$ (keine Umgehungsstrasse) & $z_2$ (Umgehungsstrasse) \\ \hline
 		$a_1$ (Stadtzentrum) & 125'000.- & 90'000.- \\ \hline
 		$a_2$ (Stadtrand) & 100'000.- & 80'000.- \\ \hline
 	\end{tabular}\\ \ \\
@@ -89,12 +89,83 @@ dominierten Alternative.
 
 \subsubsection{Zustandsdominanz}
 Eine Alternative ist in jedem Zustand (Umweltzustand) besser als (bzw. gleich gut wie) die andere Alternative.
-\begin{example} \\
+\begin{example} 
+	In Tabelle von \aszeichen{Absolute Dominanz} ist unabhängig vom Umweltzustand die Alternative $a_1$ immer besser. $a_1$ dominiert $a_2$.
+\end{example}
+
+\subsection{Ziele}
+\textbf{Komplementäre Ziele:} Durch die Verfolgung eines Ziels wird auch das andere Ziel optimal erreicht. \\
+\textbf{Neutrale Ziele:} Die Verfolgung eines Ziels beeinflusst das andere Ziel nicht. \\
+\textbf{Konkurrierende Ziele:} Die Realisierung des einen Ziels beeinträchtigt die Erreichung des anderen Ziels.
+
+\subsubsection{Effizienz}
+Eine Alternative ist effizient, wenn es keine andere Alternative gibt, die bezüglich mindestens eines Zieles besser und bezüglich keines Ziels schlechter ist.
+\begin{example} 	
+	Ein Chemieunternehmen will sowohl den Absatz als auch den Gewinn maximieren. Es vermutet allerdings, dass die zukünftigen Gewinne durch die von der Bevölkerung wahrgenommene Umweltschädigung verursacht durch das Unternehmen beeinflusst werden. Entsprechend gilt es auch die Schäden zu minimieren. Das Unternehmen kann über den Preis den Absatz steuern. Gewinn und Schäden ergeben sich dann automatisch:\\
+	\begin{tabular}{|l|l|l|l|l|}
+		\hline
+		\textbf{Alternative} & \textbf{Preis} & \textbf{Absatz} & \textbf{Gewinn} & \textbf{Umweltschäden} \\ \hline
+		$a_1$ & 15 & 800 & 7000 & -4 \\ \hline
+		$a_2$ & 20 & 600 & 7000 & -2 \\ \hline
+		$a_3$ & 25 & 400 & 6000 & 0 \\ \hline
+		$a_4$ & 30 & 200 & 4000 & 0 \\ \hline
+	\end{tabular} \\ \ \\
+	$a_4$ ist ineffizient, da diese nie besser ist als $a_3$, aber bezüglich Absatz und Gewinn schlechter als $a_3$.
+\end{example}
+Sinnvoll ist es, sich nur auf die effizienten Alternativen zu beschränken.
+
+\subsubsection{Zieldominanz}
+Wenn ein Ziel als das entscheidende erachtet wird, kann die Erfüllung aller anderen Ziele vernachlässigt werden.
+
+\subsubsection{Lexikographische Ordnung}
+Bei Verfahren der Lexikographischen Ordnung werden die Ziele sortiert und nur wenn die Ziele identisch sind, wird das nächste Ziel zur Sortierung hinzugezogen.
+\begin{example}
+	Es wird angenommen, dass für die Chemiefirma die Gewinnmaximierung das Hauptziel ist und die Minimierung der Umweltschäden das zweitwichtigste Ziel. \\
+	\begin{tabular}{|l|l|l|l|l|}
+		\hline
+		\textbf{Alternative} & \textbf{Preis} & \textbf{Absatz} & \textbf{Gewinn} & \textbf{Umweltschäden} \\ \hline
+		$a_2$ & 20 & 600 & 7000 & -2 \\ \hline
+		$a_1$ & 15 & 800 & 7000 & -4 \\ \hline		
+		$a_3$ & 25 & 400 & 6000 & 0 \\ \hline
+	\end{tabular}
+\end{example}
+\textbf{Problem:} Selbst ein minimaler Unterschied beim Hauptziel hat eine grössere Bedeutung als die grösste Abweichung im Nebenziel.
+
+\subsubsection{Nutzenfunktion}
+Entscheidungsproblem mit mehreren Zielen kann gelöst werden, indem das Maximum einer Nutzenfunktion, die als Variable die
+verschiedenen Ziele enthält, bestimmt wird. \\
+Suche den maximalen Wert für $U(e_{i1}, ..., e_{ij})$
+
+\subsubsection{Zielgewichtung}
+Spezieller Fall der Nutzenfunktion, bei der die einzelnen Ziele linear in die Nutzenfunktion eingehen.
+\textbf{Vorgehen:} 
+\begin{compactenum}
+	\item Gewichte den einzelnen Zielen zuordnen.
+	\item Normieren der Werte und anschliessend gewichten.
+	\item Ergebniswerte für alle Alternativen addieren.
+	\item Gewählt wird Alternative mit höchstem Wert.
+\end{compactenum}
+\begin{example}
+	Eine Firma möchte sowohl den Umsatz	wie auch den Gewinn maximieren. \\
 	\begin{tabular}{|l|l|l|}
 		\hline
-		& $z_1$ (keine Umgehungsstrasse) & $z_2$ (Umgehungsstrasse) \\ \hline
-		$a_1$ (Stadtzentrum) & 125'000.- & 90'000.- \\ \hline
-		$a_2$ (Stadtrand) & 100'000.- & 80'000.- \\ \hline
-	\end{tabular}\\ \ \\
-	In diesem Fall ist unabhängig vom Umweltzustand die Alternative $a_1$ immer besser. $a_1$ dominiert $a_2$.
+		\textbf{Alternative} & \textbf{Umsatz} & \textbf{Gewinn} \\ \hline
+		$a_1$ & 800'000 & 7000 \\ \hline
+		$a_2$ & 600'000 & 8000 \\ \hline		
+	\end{tabular} \\ \ \\
+	Angenommen der Firma wäre nun die Gewinnmaximierung dreimal wichtiger als die Umsatzmaximierung würden die Gewichtungsfaktoren folgendermassen lauten: 
+	\begin{compactitem}
+		\item $a_1$ : 0.25 * 800'000 + 0.75 * 7000 = 205'250
+		\item $a_2$ : 0.25 * 600'000 + 0.75 * 8000 = 156'000
+	\end{compactitem}
+\end{example}
+
+\subsubsection{Normierung}
+Eine vorgängige Normierung der Ergebnisse kann mittels folgender Formel erfolgen: \\
+$\text{normierter Wert} = \frac{\text{zu normierender Wert} - \text{minimaler Wert}}{\text{maximaler Wert} - \text{minimaler Wert}}$
+\begin{example}
+	\begin{compactitem}
+		\item $a_1$ : 0.25 * 1 + 0.75 * 1 = 0.25
+		\item $a_2$ : 0.25 * 0 + 0.75 * 0 = 0.75
+	\end{compactitem}
 \end{example}
