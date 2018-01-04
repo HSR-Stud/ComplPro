@@ -317,3 +317,37 @@ end
 	\item Innerhalb eines Simulationslaufs: UNTERSCHIEDLICH
 	\item Wenn wir 2 verschiedene Szenarien vergleichen wollen, wählen wir allerdings mit Vorteil Seed-Sätze, die identisch sind, um somit den \aszeichen{Zufallseinfluss} so weit wie möglich zu minimieren.
 \end{compactitem}
+
+\subsection{Ergebnisanalyse}
+Simulationsergebnisse (z.B. durchschnittliche Wartezeiten in einer Arztpraxis) sind abhängig von Zufallszahlen (z.B. Behandlungsdauer, Zwischenankunftszeiten, usw.). Jedes Simulationsexperiment erzeugt neue Ergebnisse (solange Seed-Werte nicht fixiert sind). Simulationsergebnisse sind somit selbst auch Zufallszahlen!
+
+\subsubsection{Konfidenzintervall}
+Ein Konfidenzintervall (auch Vertrauensbereich oder Vertrauensintervall) ist ein Intervall aus der Statistik, das die Präzision der Lageschätzung eines Parameters (zum Beispiel eines Mittelwertes) angibt. Das Konfidenzintervall ist der Bereich, der bei unendlicher Wiederholung eines Zufallsexperiments mit einer gewissen Häufigkeit (dem Konfidenzniveau) die wahre Lage des Parameters einschliesst.
+\begin{example}
+	Die Anzahl Wanderer zwischen 9 und 10 Uhr morgens an der Talstation der Säntisbahn an einem sonnigen Tag in den Sommerferien bewegt sich mit einer Wahrscheinlichkeit von 95\% zwischen 50 und 200.\\
+	Mathematisch: $P(X \in [50,200]) =  0.95$
+\end{example}
+
+\subsubsection{Batch-Mittelwert-Methode}
+\begin{compactenum}
+	\item Nach Einschwingverhalten, Gesamtzeit (resp. Gesamtmenge von Beobachtungen) in $n$ gleiche Batches teilen
+	\item Mittelwert pro Batch berechnen
+	\item Einzelmittelwerte mitteln (sofern Batches unabhängig voneinander sind, ist bei genügend langen Batches der Fall)
+	\item Aus Streuung der Einzelmittelwerte Vertrauensintervall für Mittelwertschätzer bestimmen
+\end{compactenum}
+\begin{minipage}[h]{0.8\textwidth}
+	\textbf{Mittelwert pro Batch:} $\hat{\theta}_i$\\
+	\textbf{Einzelmittelwert:} $\hat{\theta}_n=\frac{1}{n}\sum_{i=1}^{n}\hat{\theta}_i$\\
+	\textbf{Streuung:} $S_n^2=\frac{1}{n-1}\sum_{i=1}^{n}(\hat{\theta}_i-\hat{\theta}_n)^2$ \\
+	\textbf{Konfidenzintervall:} $\hat{\theta}_n-z_{\frac{\alpha}{2}}\sqrt{\frac{\sigma^2}{n}} < \theta < \hat{\theta}_n+z_{\frac{\alpha}{2}}\sqrt{\frac{\sigma^2}{n}}$ mit $n$ = Anzahl Batches \\
+	\textbf{Interpretation für n $>$ 29:} $P(\theta \in [\hat{\theta}_n-z_{\frac{\alpha}{2}}\sqrt{\frac{\sigma^2}{n}}, \hat{\theta}_n+z_{\frac{\alpha}{2}}\sqrt{\frac{\sigma^2}{n}}])=1-\alpha$
+\end{minipage}
+\begin{minipage}[h]{0.2\textwidth}
+	\begin{tabular}{|l|l|}
+		\hline
+		$\alpha$ & $z_{\frac{\alpha}{2}}$ \\ \hline
+		0.1 & 1.645 \\ \hline
+		0.05 & 1.96 \\ \hline
+		0.01 & 2.576 \\ \hline
+	\end{tabular}
+\end{minipage}	
