@@ -351,3 +351,56 @@ Ein Konfidenzintervall (auch Vertrauensbereich oder Vertrauensintervall) ist ein
 		0.01 & 2.576 \\ \hline
 	\end{tabular}
 \end{minipage}	
+
+\subsection{Reparierbare Systeme}
+\textbf{Systembeschreibung:} Wir betrachten komplexe technische Systeme wie z.B. Atomkraftwerke, Bohrinseln, Flugzeuge, Raketen oder Seebagger. Solche Systeme werden aus vielen kritischen, oft sehr teuren Bauteilen zusammengesetzt. Da System Stillstände enorme Kosten verursachen, müssen kritische Komponenten bei einem Ausfall möglichst schnell ausgetauscht werden können. Das ist nur möglich mit Hilfe von Lagerhaltung. Wenn eine kritische Komponente ausfällt, fliegt ein Hubschrauber mit einem funktionsfähigen Teil aus dem Lager zur Bohrinsel und bringt das defekte Teil zur Reparatur in eine Werkstatt auf dem Festland. \\
+\textbf{Annahmen:}
+\begin{compactitem}
+	\item Jeder Komponente Ausfall führt zum Ausfall des gesamten Systems
+	\item Ersatzteile und Systeme werden in einer einzigen Charge hergestellt
+	\item Fehlerhafte Teile können immer repariert werden (und funktionieren anschliessend wieder wie neu)
+	\item Es können nicht mehrere Teile gleichzeitig repariert werden! Dies bedeutet dass die Reparaturwerkstatt als Warteschlangensystem mit einem einzigen Schalter modelliert werden kann.
+	\item Transportzeiten (Bohrinsel, Lager, Werkstatt) sind vernachlässigbar
+\end{compactitem}
+\textbf{Lösungsweg:}
+\begin{compactenum}
+	\item Entwickle ein Simulationsmodell, das für einen gegebenen Stückzahlenvektor und eine gegebene Priorisierungsregel die durchschnittlichen jährlichen Gesamtkosten sowie den zeitlichen	Verlauf der Lagerbestände ermittelt.
+	\item Entwickle durch Experimentieren mit dem Simulator eine geeignete Priorisierungsregel für die Reparaturwerkstatt.
+	\item Entwickle ein simulationsbasiertes Optimierungsverfahren nach	folgendem iterativen Konzept. \\
+	\begin{tikzpicture}[node distance = 0.6cm and 0.5cm]
+		\node (middle) [answerW] {};		
+		\node (optimierer) [decisionW, above=of middle] {Optimierer};
+		\node (simulator) [decisionW, below=of middle] {Simulator};
+		\node (lef) [decisionW, left=of middle] {Stückzahlenvektor, Priorisierungsregel Reparaturen};
+		\node (rig) [decisionW, right=of middle] {Gesamtkosten, Zeitlicher Verlauf aller Lagerbestände};
+		\draw [arrow] (optimierer) -| (lef);
+		\draw [arrow] (lef) |- (simulator);
+		\draw [arrow] (simulator) -| (rig);
+		\draw [arrow] (rig) |- (optimierer);
+	\end{tikzpicture}\\
+\end{compactenum}
+\textbf{Wahrscheinlichkeit:} $f_i(k)$: die Wahrscheinlichkeit (gemessen als relativer Zeitanteil), dass die Anzahl kaputter Teile von Ersatzteil $i$ gleich $k$ ($k \geq 0$) ist.
+\begin{example}
+	Bestimme für die Simulation $f_i(k)$ \\
+	\begin{minipage}[h]{0.7\textwidth}
+		\includegraphics[width=0.95\textwidth]{pictures/reparatur} 
+	\end{minipage}
+	\begin{minipage}[h]{0.15\textwidth}
+		\begin{tabular}{|l|l|}
+			\hline
+			k & $f_A(k)$ \\ \hline
+			0 & 7/24 \\ \hline
+			1 & 15/24 \\ \hline
+			2 & 2/24 \\ \hline
+			3 & 0 \\ \hline
+		\end{tabular}
+		\begin{tabular}{|l|l|}
+			\hline
+			k & $f_B(k)$ \\ \hline
+			0 & 11/24 \\ \hline
+			1 & 7/24 \\ \hline
+			2 & 8/24 \\ \hline
+			3 & 0 \\ \hline
+		\end{tabular}
+	\end{minipage}
+\end{example}
