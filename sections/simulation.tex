@@ -175,7 +175,13 @@ DE Modelle werden spezifiziert durch
 	\subsubsection{Normalverteilung} 
 	$X \sim N(100, 10'000)$ \\
 	\includegraphics[width=0.25\textwidth]{pictures/normalverteilung} 
-	\subsubsection{Empirische Verteilung}
+	\subsubsection{Poissonverteilung}
+	$X \sim P(4)$ \\
+	\includegraphics[width=0.25\textwidth]{pictures/poissonverteilung} 
+\end{multicols}
+
+\subsubsection{Empirische Verteilung}
+\begin{multicols}{2}
 	\begin{tabular}{|l|l|}
 		\hline
 		\textbf{Zufallszahl} & \textbf{Wahrscheinlichkeit} \\ \hline
@@ -184,19 +190,18 @@ DE Modelle werden spezifiziert durch
 		4 & 0.1 \\ \hline
 		8 & 0.15 \\ \hline
 		16 & 0.05 \\ \hline
-	\end{tabular}
+	\end{tabular} \\
+	\textbf{Vorteile:}
+	\begin{compactitem}
+		\item Basiert auf realen Daten
+		\item Alle möglichen Formen sind möglich
+	\end{compactitem}	
+	\textbf{Nachteile:}
+	\begin{compactitem}
+		\item Es können keine Zufallszahlen erzeugt werden, die nicht schon in der Vergangenheit aufgetreten sind. Daher braucht man eine lange	Historie.
+		\item Empirische Verteilungen kann man nicht kompakt auf Papier darstellen.
+	\end{compactitem}
 \end{multicols}
-
-\subsubsection{Empirische Verteilung - Vor- / Nachteile}
-\begin{compactitem}
-	\item Basiert auf realen Daten
-	\item Alle möglichen Formen sind möglich
-\end{compactitem}	
-\textbf{Nachteile:}
-\begin{compactitem}
-	\item Es können keine Zufallszahlen erzeugt werden, die nicht schon in der Vergangenheit aufgetreten sind. Daher braucht man eine lange	Historie.
-	\item Empirische Verteilungen kann man nicht kompakt auf Papier darstellen.
-\end{compactitem}
 
 \subsubsection{Parameterschätzungen Gefahren}
 \begin{multicols}{2}
@@ -208,5 +213,99 @@ DE Modelle werden spezifiziert durch
 		\item Falsche Interpretation des vorhandenen Datenmaterials
 	\end{compactitem}
 \end{multicols}
+
+\subsection{Zufallszahlen}
+\textbf{Grobe Definition:} Eine Bit-Reihenfolge ist willkürlich, wenn sie auf keine Weise ein Muster enthält. \\
+\textbf{Zufallszahlengenerator:} Erzeugt Zufallszahlen zwischen 0 und 1 (und wandelt sie bei Bedarf in Zufallszahlen aus der gewünschten Wahrscheinlichkeitsverteilung um). \\ \\
+\textbf{Anforderungen:}
+\begin{multicols}{2}
+	\begin{compactitem}
+		\item Unabhängigkeit (auch die Elemente jeder Teilfolge)
+		\item Gleichverteilung (empirische Verteilung weitgehend konstant)
+		\item Besetzungsdichte (keine Lücken)
+		\item Keine Periodizität
+		\item Schneller und speichereffizienter Generator
+		\item allenfalls Reproduzierbarkeit
+	\end{compactitem}
+\end{multicols}	
+\textbf{Bemerkung:} Wirkliche Zufallszahlen sind nicht reproduzierbar. In den meisten Fällen will man die Zufallszahlen aber reproduzieren können. Wir sprechen in dem Fall von Pseudo – Zufallszahlen.
 	
-	
+\subsubsection{Deterministische Reihenfolge}
+\begin{compactitem}
+	\item Jede Zufallszahl wird direkt aus ihrem unmittelbaren Vorgänger erzeugt.
+	\item Die Erzeugung von Zufallszahlen startet mit einem initialen Wert. Dieser erste Wert des Zahlenflusses wird als Seed bezeichnet.
+	\item Der Seedwert legt den gesamten Zahlenfluss eindeutig fest. D.h., wenn die Seedwerte identisch sind, sind die Zahlenflüsse, die sie auslösen, es auch.
+\end{compactitem}
+
+\subsubsection{Lineare Kongruenzmethode}
+\textbf{Formel:} $X_{i+1}=(aX_i+c)\mod m$ mit $a$, $c$, $m$ und $X_0$ als Integer und $m > 0$, $a < m$, $c < m$ und $X_0 < m$ \\
+somit gilt: $u_i = \frac{X_i}{m-1}\sim U(0, 1)$ \\
+Die Qualität des Zufallszahlengenerators hängt stark von a, c und m ab. Die wichtigsten Parameter sind a und m; Meistens wählt man sehr hohe (Prim-)Zahlen. \\
+\textbf{Problem:} In den allermeisten Fällen brauchen wir keine uniformverteile Zufallszahlen zwischen 0 und 1 sondern Zufallszahlen die aus einer anderen Verteilung stammen.
+
+\subsubsection{Intervallmethode (Diskrete Zielverteilung)}
+\begin{minipage}[h]{0.6\textwidth}
+	\begin{tabular}{|l|l|l|l|}
+		\hline
+		\textbf{i} & \textbf{Zufallszahl}($r_i$) & \textbf{Wahrscheinlichkeit} & \textbf{Intervall} ($c_{i-1}$, $c_i$) \\ \hline
+		1 & 1 & 0.4 & [0.00, 0.4) \\ \hline
+		2 & 2 & 0.3 & [0.40, 0.7) \\ \hline
+		3 & 4 & 0.15 & [0.70, 0.85) \\ \hline
+		4 & 5 & 0.1 & [0.85, 0.95) \\ \hline
+		5 & 18 & 0.05 & [0.95, 1.0) \\ \hline
+	\end{tabular}
+\end{minipage}
+\begin{minipage}[h]{0.3\textwidth}
+	\begin{lstlisting}[mathescape=true, tabsize=2]
+x= U(0,1); // Standard Zufallszahl 
+           // zwischen 0 und 1
+for i = 1 : n
+	if $c_{i-1}$ =< x < $c_i$
+		returnValue = $r_i$;
+		break;
+	end
+end
+	\end{lstlisting}
+\end{minipage}
+
+\subsubsection{Inversionsmethode (Kontinuierliche Zielverteilung)}
+\begin{compactenum}
+	\item Generiere $x\sim U(0, 1)$
+	\item Berechne $y = F_y^{-1}(x)$ 
+\end{compactenum}
+\begin{example}
+	Uniformverteilung im Bereich [a, b] 
+	\begin{multicols}{2}
+		\begin{compactitem}
+			\item Gegeben: $x\sim U(0, 1)$
+			\item Gesucht: $y\sim U(a, b)$
+			\item Transformation: $y = a + (b ‐ a)x$
+			\item Beachte: $F_y(y) = \left\{\begin{array}{ll}
+												0 & y < 0 \\
+												\frac{y-a}{b-a} & a \leq y < b \\
+												1 & y \geq b \\
+											\end{array}\right.$
+		\end{compactitem}
+		\includegraphics[width=0.33\textwidth]{pictures/inversionsmethode} 
+	\end{multicols}
+\end{example}
+
+\begin{multicols}{2}
+	\begin{example} 
+		Exponentionalverteilung mit Parameter $\lambda$ \\
+		\begin{compactitem}
+			\item Gegeben: $x\sim U(0, 1)$
+			\item Gesucht: $y\sim \exp (\lambda)$
+			\item Beachte: $\begin{array}{l}
+								F_y(y) = 1-e^{-\lambda y} \\
+								x = 1-e^{-\lambda y} \\
+								e^{-\lambda y} = 1-x\\
+								y = -\frac{1}{\lambda}\ln (1-x)
+							\end{array}$
+		\end{compactitem}
+	\end{example}
+	\begin{example} 
+		Empirische Verteilung \\
+		\includegraphics[width=1\textwidth]{pictures/inversionsmethode2} 
+	\end{example}
+\end{multicols}
