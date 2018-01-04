@@ -99,8 +99,8 @@ DE Modelle werden spezifiziert durch
 	\item Flussdiagramme
 	\item Ereignisdiagramme
 \end{compactenum}
-\todo{Nachführen}
-\begin{example}[Beispiel für nachfolgende Kapitel 4.2xx]
+
+\begin{example}[Beispiel für nachfolgende Kapitel 4.2.6 - 4.2.7]
 	Wir betrachten eine Maschine, worauf genau ein Produkt hergestellt wird. Der Ankunftsprozess der Produktionsaufträge ist poissonverteilt mit dem Parameterwert $\lambda$. Bearbeitungszeiten sind exponentialverteilt mit dem Parameterwert $\mu$.\\
 	Bei der Produktion können Fehler auftreten. Beim Maschinenausgang werden die Produkte visuell kontrolliert. Die Wahrscheinlichkeit eines Fehlers ist $\epsilon$. Misslungene Produktionsaufträge müssen wiederholt werden. \\
 	\textbf{Items:} Produktionsaufträge mit Attributen: Ankunftszeit, Bearbeitungsstartzeit, Bearbeitungszeit, Anzahl Fehlversuche, etc. \\
@@ -136,14 +136,14 @@ DE Modelle werden spezifiziert durch
 		\includegraphics[width=0.2\textwidth]{pictures/fluss_gabelung1}\\ 
 		\includegraphics[width=0.2\textwidth]{pictures/fluss_gabelung2}
 	\end{multicols}
-	\includegraphics[width=0.45\textwidth]{pictures/fluss_lager}
+	\includegraphics[width=0.4\textwidth]{pictures/fluss_lager}
 \end{multicols}
 \begin{example} \\
-	\includegraphics[width=0.45\textwidth]{pictures/flussdiagramm}
+	\includegraphics[width=0.5\textwidth]{pictures/flussdiagramm}
 \end{example}
 
 \subsubsection{Ereignisdiagramm}
-\begin{example} \\
+\begin{example} 
 	\begin{multicols}{2}
 		\textbf{Ereignisdiagramm $e_1$:} \\
 		\includegraphics[width=0.5\textwidth]{pictures/ereignisdiagramm1}
@@ -151,3 +151,62 @@ DE Modelle werden spezifiziert durch
 		\includegraphics[width=0.5\textwidth]{pictures/ereignisdiagramm2}
 	\end{multicols}
 \end{example}
+
+\subsubsection{Simulationskern / Ereignismanager}
+\includegraphics[width=0.5\textwidth]{pictures/ereignismanager}
+
+\subsection{Wahrscheinlichkeitsverteilungen}	
+\textbf{Vorteile:} 	
+\begin{compactitem}
+	\item Kompakte Formulierung (meistens 1 oder 2 Parameter)
+	\item Leicht anzupassen (über die geringe Anzahl Parameter)
+	\item Grosser Bereich an ausgewürfelten Zufallszahlen
+\end{compactitem}	
+\textbf{Nachteile:}
+\begin{compactitem}
+	\item Beschränkte Anzahl Parameter, um die Verteilung in die gewünschte Richtung anzupassen. Manchmal einfach nicht möglich, die komplexe Wirklichkeit in einer Verteilung mit 1 oder 2 Parametern abzubilden.
+	\item Verteilung repräsentiert die Wirklichkeit oft nicht gut in Extremsituationen.
+\end{compactitem}
+
+\begin{multicols}{3}
+	\subsubsection{Uniformverteilung} 
+	$X \sim U[0, 200]$ \\
+	\includegraphics[width=0.25\textwidth]{pictures/uniformverteilung} 
+	\subsubsection{Normalverteilung} 
+	$X \sim N(100, 10'000)$ \\
+	\includegraphics[width=0.25\textwidth]{pictures/normalverteilung} 
+	\subsubsection{Empirische Verteilung}
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Zufallszahl} & \textbf{Wahrscheinlichkeit} \\ \hline
+		1 & 0.4 \\ \hline
+		2 & 0.3 \\ \hline
+		4 & 0.1 \\ \hline
+		8 & 0.15 \\ \hline
+		16 & 0.05 \\ \hline
+	\end{tabular}
+\end{multicols}
+
+\subsubsection{Empirische Verteilung - Vor- / Nachteile}
+\begin{compactitem}
+	\item Basiert auf realen Daten
+	\item Alle möglichen Formen sind möglich
+\end{compactitem}	
+\textbf{Nachteile:}
+\begin{compactitem}
+	\item Es können keine Zufallszahlen erzeugt werden, die nicht schon in der Vergangenheit aufgetreten sind. Daher braucht man eine lange	Historie.
+	\item Empirische Verteilungen kann man nicht kompakt auf Papier darstellen.
+\end{compactitem}
+
+\subsubsection{Parameterschätzungen Gefahren}
+\begin{multicols}{2}
+	\begin{compactitem}
+		\item Zu wenig Datenmaterial
+		\item Nicht-repräsentative Vergangenheitsdaten
+		\item Unberücksichtigte Ausreisser
+		\item Unerkannte Zeitmuster (Sommer / Winter, Mo-Fr versus Sa-So)
+		\item Falsche Interpretation des vorhandenen Datenmaterials
+	\end{compactitem}
+\end{multicols}
+	
+	
