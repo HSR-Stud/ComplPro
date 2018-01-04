@@ -279,7 +279,7 @@ end
 		\begin{compactitem}
 			\item Gegeben: $x\sim U(0, 1)$
 			\item Gesucht: $y\sim U(a, b)$
-			\item Transformation: $y = a + (b ‐ a)x$
+			\item Transformation: $y = a+(b-a)x$
 			\item Beachte: $F_y(y) = \left\{\begin{array}{ll}
 												0 & y < 0 \\
 												\frac{y-a}{b-a} & a \leq y < b \\
@@ -309,3 +309,11 @@ end
 		\includegraphics[width=1\textwidth]{pictures/inversionsmethode2} 
 	\end{example}
 \end{multicols}
+
+\subsubsection{Wahl geeigneter Seedwerte}
+\begin{compactitem}
+	\item Der konkrete Seedwert spielt absolut keine Rolle (1, 2 oder 25343).
+	\item Wichtig ist, ob Seedwerte identisch oder nicht-identisch sein sollten.
+	\item Innerhalb eines Simulationslaufs: UNTERSCHIEDLICH
+	\item Wenn wir 2 verschiedene Szenarien vergleichen wollen, wählen wir allerdings mit Vorteil Seed-Sätze, die identisch sind, um somit den \aszeichen{Zufallseinfluss} so weit wie möglich zu minimieren.
+\end{compactitem}
