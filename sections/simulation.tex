@@ -352,9 +352,11 @@ Ein Konfidenzintervall (auch Vertrauensbereich oder Vertrauensintervall) ist ein
 	\end{tabular}
 \end{minipage}	
 
-\subsection{Reparierbare Systeme}
-\textbf{Systembeschreibung:} Wir betrachten komplexe technische Systeme wie z.B. Atomkraftwerke, Bohrinseln, Flugzeuge, Raketen oder Seebagger. Solche Systeme werden aus vielen kritischen, oft sehr teuren Bauteilen zusammengesetzt. Da System Stillstände enorme Kosten verursachen, müssen kritische Komponenten bei einem Ausfall möglichst schnell ausgetauscht werden können. Das ist nur möglich mit Hilfe von Lagerhaltung. Wenn eine kritische Komponente ausfällt, fliegt ein Hubschrauber mit einem funktionsfähigen Teil aus dem Lager zur Bohrinsel und bringt das defekte Teil zur Reparatur in eine Werkstatt auf dem Festland. \\
-\textbf{Annahmen:}
+\subsection{Reparierbare Systeme FCFS}
+\subsubsection{Systembeschreibung} 
+Wir betrachten komplexe technische Systeme wie z.B. Atomkraftwerke, Bohrinseln, Flugzeuge, Raketen oder Seebagger. Solche Systeme werden aus vielen kritischen, oft sehr teuren Bauteilen zusammengesetzt. Da System Stillstände enorme Kosten verursachen, müssen kritische Komponenten bei einem Ausfall möglichst schnell ausgetauscht werden können. Das ist nur möglich mit Hilfe von Lagerhaltung. Wenn eine kritische Komponente ausfällt, fliegt ein Hubschrauber mit einem funktionsfähigen Teil aus dem Lager zur Bohrinsel und bringt das defekte Teil zur Reparatur in eine Werkstatt auf dem Festland. 
+
+\subsubsection{Annahmen}
 \begin{compactitem}
 	\item Jeder Komponente Ausfall führt zum Ausfall des gesamten Systems
 	\item Ersatzteile und Systeme werden in einer einzigen Charge hergestellt
@@ -362,7 +364,8 @@ Ein Konfidenzintervall (auch Vertrauensbereich oder Vertrauensintervall) ist ein
 	\item Es können nicht mehrere Teile gleichzeitig repariert werden! Dies bedeutet dass die Reparaturwerkstatt als Warteschlangensystem mit einem einzigen Schalter modelliert werden kann.
 	\item Transportzeiten (Bohrinsel, Lager, Werkstatt) sind vernachlässigbar
 \end{compactitem}
-\textbf{Lösungsweg:}
+
+\subsubsection{Lösungsweg}
 \begin{compactenum}
 	\item Entwickle ein Simulationsmodell, das für einen gegebenen Stückzahlenvektor und eine gegebene Priorisierungsregel die durchschnittlichen jährlichen Gesamtkosten sowie den zeitlichen	Verlauf der Lagerbestände ermittelt.
 	\item Entwickle durch Experimentieren mit dem Simulator eine geeignete Priorisierungsregel für die Reparaturwerkstatt.
@@ -377,9 +380,10 @@ Ein Konfidenzintervall (auch Vertrauensbereich oder Vertrauensintervall) ist ein
 		\draw [arrow] (lef) |- (simulator);
 		\draw [arrow] (simulator) -| (rig);
 		\draw [arrow] (rig) |- (optimierer);
-	\end{tikzpicture}\\
+	\end{tikzpicture}
 \end{compactenum}
-\textbf{Wahrscheinlichkeit:} $f_i(k)$: die Wahrscheinlichkeit (gemessen als relativer Zeitanteil), dass die Anzahl kaputter Teile von Ersatzteil $i$ gleich $k$ ($k \geq 0$) ist.
+
+\subsubsection{Wahrscheinlichkeit} $f_i(k)$: die Wahrscheinlichkeit (gemessen als relativer Zeitanteil), dass die Anzahl kaputter Teile von Ersatzteil $i$ gleich $k$ ($k \geq 0$) ist.
 \begin{example}
 	Bestimme für die Simulation $f_i(k)$ \\
 	\begin{minipage}[h]{0.7\textwidth}
@@ -404,3 +408,28 @@ Ein Konfidenzintervall (auch Vertrauensbereich oder Vertrauensintervall) ist ein
 		\end{tabular}
 	\end{minipage}
 \end{example}
+
+\subsubsection{Auswirkungen Stückzahlenerhöhung} Pro Jahr werden CHF $[1-F(s)]b$ Stillstandskosten eingespart aber zusätzliche Ammortions- und Lagerkosten von CHF $c_i$ entstehen. Die Stückzahl wird solange erhöht, bis die marginalen Einsparungen $[1-F(s)]b$ die marginalen Kosten $c_i$ übertreffen.
+
+\subsubsection{Strategie zur Bestimmung von optimalen Stückzahlen}
+\begin{compactenum}
+	\item Simuliere das System 1 x mit einem willkürlichen Stückzahlenvektor (z.B. 0) durch um $f_i(k)$ und somit $F_i(k)$ (i = 1, ..., N; k = 0, 1, ...) zu bestimmen.
+	\item Für jeden Bauteil folgt anschliessend die optimale Stückzahl $S_i^*$ aus:	$S_i^* = \min \{Q|F_i(Q) \geq\frac{b-c_i}{b}\}$
+\end{compactenum}
+
+\subsubsection{Dynamische Priorisierung - Vorschlag}
+\begin{compactenum}
+	\item Bauteile die aktuell Stillstandskosten verursachen, werden priorisiert über solche die aktuell keine Stillstandskosten verursachen.
+	\item Wenn mehrere Bauteile Stillstandskosten verursachen, wird das Bauteil mit der niedrigsten durchschnittlichen Reparaturzeit priorisiert über alle andere Bauteile.
+	\item Wenn keiner der Bauteile aktuell Stillstandskosten verursacht, wird das Bauteil mit den kleinsten \aszeichen{Abdeckung} priorisiert, wobei \aszeichen{Abdeckung} definiert wird als (aktueller Lagerbestand + 1) x durchschnittliche Zeit zwischen zwei nachfolgenden Ausfällen
+\end{compactenum}
+\textbf{Beschriebene Strategie zur Optimierung der Stückzahlen unter FCFS kann nicht 1 : 1 verwendet werden.}
+
+\subsubsection{Simulationsbasierte Optimierung (iterativ)}
+\begin{compactenum}
+	\item Entwerfe intelligente Priorisierungsregel $\Omega$
+	\item Setze Iterationszahl $n = 0$ und initialisiere $S^n = 0$
+	\item  Simuliere das System unter Verwendung von $\Omega$ und $S^n$. Speichere die relativen Häufigkeiten der defekten Teile $i$, $f_i(k)$, $k \geq 0$.
+	\item Berechne $S^{n+1} = \min \{Q|F_i(Q) \geq\frac{b-c_i}{b}\}$
+	\item Beende die Iteration, wenn $S^{n+1} = S^n$. Andernfalls setze $n = n + 1$ und gehe zu Schritt 3.
+\end{compactenum}
