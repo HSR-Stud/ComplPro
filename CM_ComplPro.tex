@@ -29,6 +29,8 @@
 
 % Setze etwas in Anführungs und Schlusszeichen
 \newcommand{\aszeichen}[1]{,,#1``}
+\newcommand{\integral}[4]{\int_{#1}^{#2} \! {#3} \, \mathrm{d}{#4}}
+\newcommand{\differential}[2]{\frac{\mathrm{d}{(#1)}}{\mathrm{d}{#2}}}
 \newenvironment{example}[1][Beispiel]{\begingroup\setlength{\OuterFrameSep}{0pt}\colorlet{shadecolor}{gray!15}\begin{snugshade*}\textbf{#1: }}{\end{snugshade*}\endgroup}
 
 % Spacing von multicols

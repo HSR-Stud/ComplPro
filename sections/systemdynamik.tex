@@ -72,3 +72,38 @@
 \end{compactitem}
 
 \subsection{Akkumulation}
+Grundlage zum Verstehen von Spät- und Rückwirkungen. Akkumulation zu verstehen ist eine Voraussetzung, um Systemverhalten zu verstehen.
+
+\subsubsection{Definitionen}
+Der Verlauf einer Bestandesgrösse über die Zeit ist durch die untenstehende hydraulische Metapher definiert – bzw. durch die equivalenten mathematischen Definitionen.\\
+\begin{multicols}{2}
+	\textbf{Bestandes- und Flussdiagramm (Stock-and-Flow-Diagramm):} \\
+	\includegraphics[width=0.5\textwidth]{pictures/badewanne_stock} \\
+	\textbf{Integralgleichung:} \\
+	$Stock(t) = \integral{t_0}{t}{[Inflow(s)-Outflow(s)]}{s}+Stock(t_0)$\\
+	\textbf{Differentialgleichung:} \\
+	$\differential{Stock(t)}{t} = Inflow(t) - Outflow(t)$ \\
+	\textbf{Metapher aus der Hydraulik:} \\
+	\includegraphics[width=0.35\textwidth]{pictures/badewanne}
+\end{multicols}
+
+\begin{multicols}{2}
+	\subsubsection{Bestandesgrössen (Stocks)}
+	\begin{compactitem}
+		\item sind Zustandsgrössen, die “Erinnerung” eines Systems
+		\item müssen mit einem Anfangswert charakterisiert werden
+		\item ändern sich ausschliesslich durch Zu- und Abfluss
+		\item Wert verändert sind nicht \textless-\textgreater\ Zufluss = Abfluss
+		\item Wert wächst \textless-\textgreater\ Zufluss \textgreater\ Abfluss
+		\item Wert fällt \textless-\textgreater\ Zufluss \textless\ Abfluss
+		\item haben Masseinheiten wie Liter, CHF, Meter
+	\end{compactitem}
+	
+	\subsubsection{Flussgrössen (Flows)}
+	\begin{compactitem}
+		\item sind Änderungsraten von Bestandesgrössen
+		\item haben Masseinheiten wie Liter/Stunde, CHF/Jahr, Meter/Sekunde
+	\end{compactitem} \ \\ \ \\ \ \\
+\end{multicols}
+
+\subsection{Causal Loop Diagramme}
