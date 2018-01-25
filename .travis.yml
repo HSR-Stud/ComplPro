@@ -1,17 +1,14 @@
 before_install:
- - source ./texlive/texlive_install.sh
-cache:
-  directories:
-    - /tmp/texlive
-    - $HOME/.texlive
+- sudo apt-get update
+- sudo apt-get install -y texlive-latex-extra texlive-lang-german texlive-math-extra texlive-fonts-extra
 script:
-- pdflatex -interaction=nonstopmode ./CM_ComplPro.tex
-- pdflatex -interaction=nonstopmode ./CM_ComplPro.tex
+- pdflatex -interaction=nonstopmode ./CompAlg.tex
+- pdflatex -interaction=nonstopmode ./CompAlg.tex
 deploy:
   provider: releases
   api_key: $GITHUB_RELEASE_TOKEN
   file:
-   - ./CM_ComplPro.pdf
+   - ./CompAlg.pdf
   skip_cleanup: true
   on:
     tags: false
