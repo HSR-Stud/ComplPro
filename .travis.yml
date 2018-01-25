@@ -1,6 +1,9 @@
 before_install:
-- sudo apt-get update
-- sudo apt-get install -y texlive-latex-extra texlive-lang-german texlive-math-extra texlive-fonts-extra
+ - source ./texlive/texlive_install.sh
+cache:
+  directories:
+    - /tmp/texlive
+    - $HOME/.texlive
 script:
 - pdflatex -interaction=nonstopmode ./CM_ComplPro.tex
 - pdflatex -interaction=nonstopmode ./CM_ComplPro.tex
